@@ -162,8 +162,7 @@ h2.xs-title{font-size:clamp(26px,2.75vw,44px);line-height:1.06}
 .xs-list li{display:flex;justify-content:space-between;gap:12px;padding-top:7px;border-top:1px solid var(--anatomy-faint)}
 .xs-cue{display:flex;align-items:center;gap:12px;font:500 12px/1 var(--xs-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--anatomy-muted)}
 .xs-cue-line{position:relative;width:1px;height:34px;background:var(--anatomy-faint);overflow:hidden}
-.xs-cue-line::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:var(--anatomy-strong);animation:xs-cue 1.8s cubic-bezier(.6,0,.3,1) infinite}
-@keyframes xs-cue{to{top:100%}}
+.xs-cue-line i{position:absolute;left:0;top:0;width:1px;height:40%;background:var(--anatomy-strong)}
 .xs-note{font-size:13px;line-height:1.5;color:var(--anatomy-muted);max-width:34em}
 
 .xs-progress{flex:1;height:2px;background:var(--anatomy-faint);overflow:hidden;border-radius:2px}
@@ -177,9 +176,7 @@ h2.xs-title{font-size:clamp(26px,2.75vw,44px);line-height:1.06}
 .xs-stage{position:relative;min-width:0;min-height:0;overflow:hidden;background:var(--anatomy-card)}
 .xs-stage .iso-svg{position:absolute;inset:0;width:100%;height:100%;overflow:hidden}
 .xs-stage .xm-needle{stroke-width:calc(var(--anatomy-weight) * 1.8)}
-.xs-stage svg [data-ch]{transition:opacity .7s cubic-bezier(.3,.7,0,1)}
-.xs-stage svg[data-focus] [data-ch]{opacity:.2}
-.xs-stage svg[data-focus] [data-ch].is-focus{opacity:1}
+
 .xs-hud{position:absolute;right:clamp(14px,2.2vw,28px);bottom:clamp(12px,2vw,26px);margin:0;padding:8px 12px;border-radius:999px;background:var(--anatomy-card);box-shadow:0 0 0 1px var(--anatomy-faint);font:500 13px/1 var(--xs-mono);color:var(--anatomy-text);font-variant-numeric:tabular-nums;pointer-events:none;white-space:nowrap}
 .xs-hud:empty,.xs-hud[data-quiet]{display:none}
 
@@ -204,7 +201,29 @@ h2.xs-title{font-size:clamp(26px,2.75vw,44px);line-height:1.06}
   .xs-cue-line{height:22px}
 }
 
-@media (prefers-reduced-motion:reduce){.xs-cue-line::after{animation:none;top:30%}.xs-stage svg [data-ch]{transition:none}}
+@media (prefers-reduced-motion:reduce){.xs-cue-line i{top:30%}}
+
+/* Film mode (#film): the desktop layout with type sized for a video seen in a feed. */
+.xs-url{display:none}
+.xs-film *{transition:none!important;animation:none!important}
+.xs-film .xs-story{grid-template-columns:44% minmax(0,1fr)}
+.xs-film .xs-panel{padding:40px 44px 36px;gap:20px}
+.xs-film .xs-credit{font-size:15px}
+.xs-film .xs-eyebrow{font-size:15px}
+.xs-film h1.xs-title{font-size:56px}
+.xs-film h2.xs-title{font-size:46px}
+.xs-film .xs-step{gap:22px}
+.xs-film .xs-text{font-size:25px;line-height:1.42;max-width:none}
+.xs-film .xs-big{font-size:37px}
+.xs-film .xs-list{font-size:17px;gap:10px 24px}
+.xs-film .xs-note{font-size:16px;max-width:none}
+.xs-film .xs-pill{font-size:16px;padding:12px 18px}
+.xs-film .xs-count{font-size:15px}
+.xs-film .xs-hud{font-size:16px;padding:10px 15px}
+.xs-film .xs-play,.xs-film .xs-cue{display:none}
+.xs-film .xs-url{display:grid;gap:6px;font:500 17px/1.3 var(--xs-mono);color:var(--anatomy-strong)}
+.xs-film .xs-url span{color:var(--anatomy-muted);font-size:14px;letter-spacing:.1em;text-transform:uppercase}
+.xs-film .xs-url b{font-weight:500;white-space:nowrap}
 
 </style>
 <style>
@@ -245,7 +264,7 @@ h2.xs-title{font-size:clamp(26px,2.75vw,44px);line-height:1.06}
   <section class="xs-story" aria-label="How X ranks a post, in 12 steps">
     <div class="xs-panel">
       <div class="xs-top"><span class="xs-credit"><a href="https://motionary.dev/" target="_blank" rel="noopener">motionary.dev</a><span aria-hidden="true">·</span><a href="https://x.com/mehdi_made" target="_blank" rel="noopener me">@mehdi_made</a></span></div>
-      <div class="xs-steps"><article class="xs-step" data-step="0"><p class="xs-eyebrow">X's For You algorithm</p><h1 class="xs-title">How X decides what's in your For You feed</h1><p class="xs-text">Every post gets one score. X's code calls the scorer Home Mixer, so let's build one.</p><p class="xs-cue"><span class="xs-cue-line" aria-hidden="true"></span>Scroll, or press Play</p></article><article class="xs-step" data-step="1" aria-hidden="true"><h2 class="xs-title">One channel for each thing you might do</h2><p class="xs-text">Like, reply, repost, share… and four you'd rather not: block, not interested, mute, report.</p></article><article class="xs-step" data-step="2" aria-hidden="true"><h2 class="xs-title">The fader is a prediction</h2><p class="xs-text">X's AI model guesses how likely you are to reply to this post.</p><p class="xs-big"><span class="xs-pos">3%</span> chance of a reply</p></article><article class="xs-step" data-step="3" aria-hidden="true"><h2 class="xs-title">The knob is how much X cares</h2><p class="xs-text">Each action has a fixed weight. A reply: 5, or 20 if you follow each other.</p><p class="xs-big"><span class="xs-pos">reply ×5 → ×20</span></p></article><article class="xs-step" data-step="4" aria-hidden="true"><h2 class="xs-title">Multiply the two</h2><p class="xs-text">Chance × weight is what this channel adds to the score.</p><p class="xs-big">3% × 20 = <span class="xs-pos">+0.60</span></p></article><article class="xs-step" data-step="5" aria-hidden="true"><h2 class="xs-title">Likes barely count</h2><p class="xs-text">A like weighs just 0.5, so it adds 0.03: a twentieth of that reply.</p><p class="xs-big">6% × 0.5 = <span class="xs-pos">+0.03</span></p></article><article class="xs-step" data-step="6" aria-hidden="true"><h2 class="xs-title">Four channels subtract</h2><p class="xs-text">Huge weights, because they're rare. Even a 0.2% chance of “Not interested” costs 0.095.</p><p class="xs-big">0.2% × −47.52 = <span class="xs-neg">−0.095</span></p><ul class="xs-list"><li><span>Block</span><span class="xs-neg">−31.2</span></li><li><span>Not interested</span><span class="xs-neg">−47.52</span></li><li><span>Mute</span><span class="xs-neg">−58.8</span></li><li><span>Report</span><span class="xs-neg">−234</span></li></ul></article><article class="xs-step" data-step="7" aria-hidden="true"><h2 class="xs-title">Add it all up</h2><p class="xs-text">Every channel feeds one meter. This post from a mutual scores 0.58.</p><p class="xs-big">Score <span class="xs-pos">0.58</span></p></article><article class="xs-step" data-step="8" aria-hidden="true"><h2 class="xs-title">Then the discounts</h2><p class="xs-text">Another post from the same account: ×0.63, then ×0.44… Not following them: ×0.75.</p><p class="xs-big">0.58 × 0.63 = <span class="xs-pos">0.36</span></p></article><article class="xs-step" data-step="9" aria-hidden="true"><h2 class="xs-title">Rage bait sinks</h2><p class="xs-text">Predicted mutes and “Not interested” taps push its total below zero, so it's squeezed to almost nothing.</p><p class="xs-big">Score <span class="xs-neg">0.0007</span></p></article><article class="xs-step" data-step="10" aria-hidden="true"><h2 class="xs-title">Useful posts travel</h2><p class="xs-text">People share this link, and copy link weighs 20. Even at ×0.75 it scores 0.14.</p><p class="xs-big">Score <span class="xs-pos">0.14</span></p></article><article class="xs-step" data-step="11" aria-hidden="true"><h2 class="xs-title">Your feed: highest scores first</h2><p class="xs-text">Replies and shares lift a post. Mutes and reports sink it. Drag a fader to try your own.</p><p class="xs-note">Weights: <a href="https://github.com/xai-org/x-algorithm/blob/cb45b5501423126adfc508052116c2d67c0e3fec/home-mixer/params/param.rs" target="_blank" rel="noopener">home-mixer/params/param.rs</a> in X's open-source code, synced 8 Oct 2026. Example chances are illustrative.</p><p class="xs-follow"><a class="xs-pill" data-primary href="https://x.com/mehdi_made" target="_blank" rel="noopener me">Follow @mehdi_made on X<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5l5-5M3.5 2.5h4v4"/></svg></a><a class="xs-pill" href="https://motionary.dev/" target="_blank" rel="noopener">motionary.dev<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5l5-5M3.5 2.5h4v4"/></svg></a></p></article></div>
+      <div class="xs-steps"><article class="xs-step" data-step="0"><p class="xs-eyebrow">X's For You algorithm</p><h1 class="xs-title">How X decides what's in your For You feed</h1><p class="xs-text">Every post gets one score. X's code calls the scorer Home Mixer, so let's build one.</p><p class="xs-cue"><span class="xs-cue-line" aria-hidden="true"><i></i></span>Scroll, or press Play</p></article><article class="xs-step" data-step="1" aria-hidden="true"><h2 class="xs-title">One channel for each thing you might do</h2><p class="xs-text">Like, reply, repost, share… and four you'd rather not: block, not interested, mute, report.</p></article><article class="xs-step" data-step="2" aria-hidden="true"><h2 class="xs-title">The fader is a prediction</h2><p class="xs-text">X's AI model guesses how likely you are to reply to this post.</p><p class="xs-big"><span class="xs-pos">3%</span> chance of a reply</p></article><article class="xs-step" data-step="3" aria-hidden="true"><h2 class="xs-title">The knob is how much X cares</h2><p class="xs-text">Each action has a fixed weight. A reply: 5, or 20 if you follow each other.</p><p class="xs-big"><span class="xs-pos">reply ×5 → ×20</span></p></article><article class="xs-step" data-step="4" aria-hidden="true"><h2 class="xs-title">Multiply the two</h2><p class="xs-text">Chance × weight is what this channel adds to the score.</p><p class="xs-big">3% × 20 = <span class="xs-pos">+0.60</span></p></article><article class="xs-step" data-step="5" aria-hidden="true"><h2 class="xs-title">Likes barely count</h2><p class="xs-text">A like weighs just 0.5, so it adds 0.03: a twentieth of that reply.</p><p class="xs-big">6% × 0.5 = <span class="xs-pos">+0.03</span></p></article><article class="xs-step" data-step="6" aria-hidden="true"><h2 class="xs-title">Four channels subtract</h2><p class="xs-text">Huge weights, because they're rare. Even a 0.2% chance of “Not interested” costs 0.095.</p><p class="xs-big">0.2% × −47.52 = <span class="xs-neg">−0.095</span></p><ul class="xs-list"><li><span>Block</span><span class="xs-neg">−31.2</span></li><li><span>Not interested</span><span class="xs-neg">−47.52</span></li><li><span>Mute</span><span class="xs-neg">−58.8</span></li><li><span>Report</span><span class="xs-neg">−234</span></li></ul></article><article class="xs-step" data-step="7" aria-hidden="true"><h2 class="xs-title">Add it all up</h2><p class="xs-text">Every channel feeds one meter. This post from a mutual scores 0.58.</p><p class="xs-big">Score <span class="xs-pos">0.58</span></p></article><article class="xs-step" data-step="8" aria-hidden="true"><h2 class="xs-title">Then the discounts</h2><p class="xs-text">Another post from the same account: ×0.63, then ×0.44… Not following them: ×0.75.</p><p class="xs-big">0.58 × 0.63 = <span class="xs-pos">0.36</span></p></article><article class="xs-step" data-step="9" aria-hidden="true"><h2 class="xs-title">Rage bait sinks</h2><p class="xs-text">Predicted mutes and “Not interested” taps push its total below zero, so it's squeezed to almost nothing.</p><p class="xs-big">Score <span class="xs-neg">0.0007</span></p></article><article class="xs-step" data-step="10" aria-hidden="true"><h2 class="xs-title">Useful posts travel</h2><p class="xs-text">People share this link, and copy link weighs 20. Even at ×0.75 it scores 0.14.</p><p class="xs-big">Score <span class="xs-pos">0.14</span></p></article><article class="xs-step" data-step="11" aria-hidden="true"><h2 class="xs-title">Your feed: highest scores first</h2><p class="xs-text">Replies and shares lift a post. Mutes and reports sink it. Drag a fader to try your own.</p><p class="xs-note">Weights: <a href="https://github.com/xai-org/x-algorithm/blob/cb45b5501423126adfc508052116c2d67c0e3fec/home-mixer/params/param.rs" target="_blank" rel="noopener">home-mixer/params/param.rs</a> in X's open-source code, synced 8 Oct 2026. Example chances are illustrative.</p><p class="xs-follow"><a class="xs-pill" data-primary href="https://x.com/mehdi_made" target="_blank" rel="noopener me">Follow @mehdi_made on X<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5l5-5M3.5 2.5h4v4"/></svg></a><a class="xs-pill" href="https://motionary.dev/" target="_blank" rel="noopener">motionary.dev<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5l5-5M3.5 2.5h4v4"/></svg></a></p><p class="xs-url" aria-hidden="true"><span>Try it yourself</span><b>mahdidavoodi7.github.io/how-x-ranks-your-feed</b></p></article></div>
       <div class="xs-foot">
         <span class="xs-count" data-count>01 / 12</span>
         <div class="xs-progress" aria-hidden="true"><i data-progress></i></div>
@@ -1423,11 +1442,15 @@ meter.x = needleOf(evaluate().score);
 markPost();
 draw(evaluate());
 
-const STORY = {"steps":[{"view":"desk","fill":0.92,"focus":[],"state":{"p":[0.06,0.006,0.002,0.00001,0.00001,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":false,"oon":false,"repeat":0,"select":-1}},{"view":"channels","fill":0.84,"focus":["0","1","2","3","4","5","6","7","8","9","10","11"],"state":{"p":[0.06,0.006,0.002,0.00001,0.00001,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":false,"oon":false,"repeat":0,"select":-1}},{"view":"replyFader","fill":0.6,"focus":["4"],"state":{"p":[0.06,0.006,0.002,0.00001,0.03,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":false,"oon":false,"repeat":0,"select":4}},{"view":"replyKnob","fill":0.48,"focus":["4"],"state":{"p":[0.06,0.006,0.002,0.00001,0.03,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":true,"oon":false,"repeat":0,"select":4}},{"view":"replyMeter","fill":0.5,"focus":["4"],"state":{"p":[0.06,0.006,0.002,0.00001,0.03,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":true,"oon":false,"repeat":0,"select":4}},{"view":"likeStrip","fill":0.82,"focus":["0"],"state":{"p":[0.06,0.006,0.002,0.00001,0.03,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":true,"oon":false,"repeat":0,"select":0}},{"view":"negatives","fill":0.86,"focus":["8","9","10","11"],"state":{"p":[0.06,0.006,0.002,0.00001,0.03,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":true,"oon":false,"repeat":0,"select":9}},{"view":"vu","fill":0.72,"focus":["vu"],"state":{"p":[0.06,0.006,0.002,0.00001,0.03,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":true,"oon":false,"repeat":0,"select":-1}},{"view":"master","fill":0.82,"focus":["master","vu"],"state":{"p":[0.06,0.006,0.002,0.00001,0.03,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":true,"oon":false,"repeat":1,"select":-1}},{"view":"desk","fill":0.92,"focus":[],"state":{"p":[0.03,0.006,0.002,0.001,0.025,0.008,0.003,0.0005,0.003,0.03,0.006,0.001],"mutual":false,"oon":true,"repeat":0,"select":-1}},{"view":"desk","fill":0.92,"focus":[],"state":{"p":[0.04,0.012,0.01,0.015,0.004,0.002,0.008,0.006,0.00005,0.002,0.0002,0.00002],"mutual":false,"oon":true,"repeat":0,"select":-1}},{"view":"desk","fill":0.92,"focus":[],"state":{"p":[0.06,0.006,0.002,0.00001,0.03,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":true,"oon":false,"repeat":0,"select":-1}}],"regions":{"overview":{"box":[0,0,600,380],"hull":[0,0,600,0,600,0,600,380,0,380,0,380]},"desk":{"box":[57.79,-3.76,491.08,321.68],"hull":[156.42,-3.76,548.87,122.95,548.87,222.39,450.24,317.92,57.79,191.22,57.79,91.77]},"channels":{"box":[73.95,32.77,372.99,253.1],"hull":[169.92,32.77,446.94,122.21,446.94,192.93,350.98,285.87,73.95,196.43,73.95,125.72]},"replyStrip":{"box":[166.29,62.58,119.05,171.12],"hull":[262.26,62.58,285.34,70.04,285.34,140.75,189.38,233.7,166.29,226.25,166.29,155.53]},"replyFader":{"box":[185.75,133.73,62.63,57.21],"hull":[231.07,133.73,248.38,139.32,248.38,147.05,203.06,190.94,185.75,185.35,185.75,177.62]},"replyKnob":{"box":[238.93,106.74,36.42,30.09],"hull":[252.26,106.74,275.35,114.19,275.35,123.92,262.02,136.83,238.93,129.37,238.93,119.65]},"replyMeter":{"box":[256.88,75.78,15.18,43.33],"hull":[258.21,75.78,272.06,80.25,272.06,117.82,270.73,119.11,256.88,114.64,256.88,77.07]},"likeStrip":{"box":[73.95,32.77,119.05,171.12],"hull":[169.92,32.77,193,40.23,193,110.94,97.04,203.89,73.95,196.43,73.95,125.72]},"negatives":{"box":[258.63,92.4,188.31,193.47],"hull":[354.6,92.4,446.94,122.21,446.94,192.93,350.98,285.87,258.63,256.06,258.63,185.34]},"vu":{"box":[436.76,96.06,100.21,110.39],"hull":[448.09,96.06,536.97,124.76,536.97,195.47,525.64,206.45,436.76,177.75,436.76,107.03]},"master":{"box":[364.3,95.69,172.67,179.82],"hull":[446.94,95.69,536.97,124.76,536.97,195.47,454.34,275.51,364.3,246.44,364.3,175.73]}},"holds":[5.8,4.72,4.88,5,4.24,4.72,4.72,4.08,4.56,4.72,4.4,6.38]};
+const STORY = {"steps":[{"view":"desk","fill":0.92,"focus":[],"state":{"p":[0.06,0.006,0.002,0.00001,0.00001,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":false,"oon":false,"repeat":0,"select":-1}},{"view":"channels","fill":0.84,"focus":["0","1","2","3","4","5","6","7","8","9","10","11"],"state":{"p":[0.06,0.006,0.002,0.00001,0.00001,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":false,"oon":false,"repeat":0,"select":-1}},{"view":"replyFader","fill":0.6,"focus":["4"],"state":{"p":[0.06,0.006,0.002,0.00001,0.03,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":false,"oon":false,"repeat":0,"select":4}},{"view":"replyKnob","fill":0.48,"focus":["4"],"state":{"p":[0.06,0.006,0.002,0.00001,0.03,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":true,"oon":false,"repeat":0,"select":4}},{"view":"replyMeter","fill":0.5,"focus":["4"],"state":{"p":[0.06,0.006,0.002,0.00001,0.03,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":true,"oon":false,"repeat":0,"select":4}},{"view":"likeStrip","fill":0.82,"focus":["0"],"state":{"p":[0.06,0.006,0.002,0.00001,0.03,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":true,"oon":false,"repeat":0,"select":0}},{"view":"negatives","fill":0.86,"focus":["8","9","10","11"],"state":{"p":[0.06,0.006,0.002,0.00001,0.03,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":true,"oon":false,"repeat":0,"select":9}},{"view":"vu","fill":0.72,"focus":["vu"],"state":{"p":[0.06,0.006,0.002,0.00001,0.03,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":true,"oon":false,"repeat":0,"select":-1}},{"view":"master","fill":0.82,"focus":["master","vu"],"state":{"p":[0.06,0.006,0.002,0.00001,0.03,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":true,"oon":false,"repeat":1,"select":-1}},{"view":"desk","fill":0.92,"focus":[],"state":{"p":[0.03,0.006,0.002,0.001,0.025,0.008,0.003,0.0005,0.003,0.03,0.006,0.001],"mutual":false,"oon":true,"repeat":0,"select":-1}},{"view":"desk","fill":0.92,"focus":[],"state":{"p":[0.04,0.012,0.01,0.015,0.004,0.002,0.008,0.006,0.00005,0.002,0.0002,0.00002],"mutual":false,"oon":true,"repeat":0,"select":-1}},{"view":"desk","fill":0.92,"focus":[],"state":{"p":[0.06,0.006,0.002,0.00001,0.03,0.002,0.003,0.001,0.00002,0.002,0.0001,0.00001],"mutual":true,"oon":false,"repeat":0,"select":-1}}],"regions":{"overview":{"box":[0,0,600,380],"hull":[0,0,600,0,600,0,600,380,0,380,0,380]},"desk":{"box":[57.79,-3.76,491.08,321.68],"hull":[156.42,-3.76,548.87,122.95,548.87,222.39,450.24,317.92,57.79,191.22,57.79,91.77]},"channels":{"box":[73.95,32.77,372.99,253.1],"hull":[169.92,32.77,446.94,122.21,446.94,192.93,350.98,285.87,73.95,196.43,73.95,125.72]},"replyStrip":{"box":[166.29,62.58,119.05,171.12],"hull":[262.26,62.58,285.34,70.04,285.34,140.75,189.38,233.7,166.29,226.25,166.29,155.53]},"replyFader":{"box":[185.75,133.73,62.63,57.21],"hull":[231.07,133.73,248.38,139.32,248.38,147.05,203.06,190.94,185.75,185.35,185.75,177.62]},"replyKnob":{"box":[238.93,106.74,36.42,30.09],"hull":[252.26,106.74,275.35,114.19,275.35,123.92,262.02,136.83,238.93,129.37,238.93,119.65]},"replyMeter":{"box":[256.88,75.78,15.18,43.33],"hull":[258.21,75.78,272.06,80.25,272.06,117.82,270.73,119.11,256.88,114.64,256.88,77.07]},"likeStrip":{"box":[73.95,32.77,119.05,171.12],"hull":[169.92,32.77,193,40.23,193,110.94,97.04,203.89,73.95,196.43,73.95,125.72]},"negatives":{"box":[258.63,92.4,188.31,193.47],"hull":[354.6,92.4,446.94,122.21,446.94,192.93,350.98,285.87,258.63,256.06,258.63,185.34]},"vu":{"box":[436.76,96.06,100.21,110.39],"hull":[448.09,96.06,536.97,124.76,536.97,195.47,525.64,206.45,436.76,177.75,436.76,107.03]},"master":{"box":[364.3,95.69,172.67,179.82],"hull":[446.94,95.69,536.97,124.76,536.97,195.47,454.34,275.51,364.3,246.44,364.3,175.73]}},"holds":[5.8,4.72,4.88,5,4.24,4.72,4.72,4.08,4.56,4.72,4.4,6.38],"film":[3.4,4.76,4.890000000000001,5.2,4.37,4.76,4.76,4.24,4.63,4.76,4.5,5.6]};
 // The scroll story. GSAP pins the split screen; scrolling moves a camera (the SVG's viewBox) through
 // the desk, lights the part being explained and swaps the words. The desk itself is
 // driven through window.desk, so its faders, knobs, meters and needle move the way the model says.
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+// #film renders the story as a video: no scrolling, a fixed timeline, bigger type (see film.mjs).
+const filming = location.hash === "#film";
+document.documentElement.classList.toggle("xs-film", filming);
 
 const storyEl = document.querySelector(".xs-story");
 const stageEl = document.querySelector(".xs-stage");
@@ -1461,9 +1484,10 @@ function shotOf(index) {
 }
 
 const cam = shotOf(0);
+const drift = { z: 0 }; // a slow push-in while a film step holds
 function drawCamera() {
   const { w: W, h: H } = stageSize();
-  const across = Math.exp(cam.z);
+  const across = Math.exp(cam.z + drift.z);
   const tall = (across * H) / W;
   figure.setAttribute("viewBox", `${(cam.x - across / 2).toFixed(2)} ${(cam.y - tall / 2).toFixed(2)} ${across.toFixed(2)} ${tall.toFixed(2)}`);
   // lines thicken a little as we get close, so a 6× close-up still reads as drawn
@@ -1474,8 +1498,10 @@ function drawCamera() {
 // Light the parts a step is about and let everything else fall back.
 const parts = Array.from(figure.querySelectorAll("[data-ch]"));
 function focusOn(names) {
-  figure.toggleAttribute("data-focus", names.length > 0);
-  for (const part of parts) part.classList.toggle("is-focus", names.includes(part.dataset.ch));
+  for (const part of parts) {
+    const lit = !names.length || names.includes(part.dataset.ch);
+    gsap.to(part, { opacity: lit ? 1 : 0.2, duration: calm ? 0 : 0.7, ease: "power3.out", overwrite: true });
+  }
 }
 
 let active = -1;
@@ -1492,20 +1518,23 @@ function sync() {
     countEl.textContent = `${pad(index + 1)} / ${pad(LAST + 1)}`;
     hud.toggleAttribute("data-quiet", index < 2);
   }
-  progressEl.style.transform = `scaleX(${tl.progress().toFixed(4)})`;
+  if (!filming) progressEl.style.transform = `scaleX(${tl.progress().toFixed(4)})`;
 }
 
 tl = gsap.timeline({
   defaults: { ease: "power2.inOut" },
   onUpdate: sync,
-  scrollTrigger: {
-    trigger: storyEl,
-    start: "top top",
-    end: () => `+=${Math.round((LAST + END_HOLD) * window.innerHeight * 0.9)}`,
-    pin: true,
-    scrub: calm ? true : 0.9,
-    invalidateOnRefresh: true,
-  },
+  paused: filming,
+  scrollTrigger: filming
+    ? undefined
+    : {
+        trigger: storyEl,
+        start: "top top",
+        end: () => `+=${Math.round((LAST + END_HOLD) * window.innerHeight * 0.9)}`,
+        pin: true,
+        scrub: calm ? true : 0.9,
+        invalidateOnRefresh: true,
+      },
 });
 
 stepEls.slice(1).forEach((el) => gsap.set(el.children, { autoAlpha: 0, y: 26 }));
@@ -1519,79 +1548,99 @@ for (let i = 1; i <= LAST; i++) {
 }
 tl.to({}, { duration: END_HOLD }, LAST);
 
-// After a resize (or the fonts arriving) every tween has new end points: replay to where we are.
-ScrollTrigger.addEventListener("refresh", () => {
-  const time = tl.time();
-  tl.time(0, true).time(time, true);
-  if (time >= LAST) Object.assign(cam, shotOf(LAST));
-  drawCamera();
-  sync();
-});
-document.fonts?.ready.then(() => ScrollTrigger.refresh());
-
-// Scrolling position of a step, for Play and the keys.
-function scrollFor(index) {
-  const st = tl.scrollTrigger;
-  const time = Math.min(index + 0.02, tl.duration());
-  return st.start + (st.end - st.start) * (time / tl.duration());
-}
-function go(index) {
-  const target = Math.max(0, Math.min(LAST, index));
-  gsap.to(window, { scrollTo: { y: scrollFor(target), autoKill: true }, duration: calm ? 0 : 1.1, ease: "power2.inOut" });
-}
-
-// Play: scroll through the whole story by itself, holding each step long enough to read it.
-let player = null;
-function stopPlaying(label = "Play") {
-  if (!player) return;
-  player.kill();
-  player = null;
-  playButton.removeAttribute("data-playing");
-  playLabel.textContent = label;
-}
-function play() {
-  stopPlaying();
-  const start = active >= LAST ? 0 : Math.max(0, active);
-  player = gsap.timeline({
-    onComplete: () => {
-      player = null;
-      playButton.removeAttribute("data-playing");
-      playLabel.textContent = "Replay";
-    },
+if (!filming) {
+  // After a resize (or the fonts arriving) every tween has new end points: replay to where we are.
+  ScrollTrigger.addEventListener("refresh", () => {
+    const time = tl.time();
+    tl.time(0, true).time(time, true);
+    if (time >= LAST) Object.assign(cam, shotOf(LAST));
+    drawCamera();
+    sync();
   });
-  if (start === 0 && window.scrollY > scrollFor(0) + 2) player.to(window, { scrollTo: { y: scrollFor(0), autoKill: false }, duration: 1.2, ease: "power2.inOut" });
-  for (let i = start + 1; i <= LAST; i++) {
-    player.to(window, { scrollTo: { y: scrollFor(i), autoKill: false }, duration: calm ? 0.01 : 1.4, ease: "power1.inOut" }, `+=${STORY.holds[i - 1]}`);
+  document.fonts?.ready.then(() => ScrollTrigger.refresh());
+
+  // Scrolling position of a step, for Play and the keys.
+  function scrollFor(index) {
+    const st = tl.scrollTrigger;
+    const time = Math.min(index + 0.02, tl.duration());
+    return st.start + (st.end - st.start) * (time / tl.duration());
   }
-  player.to({}, { duration: STORY.holds[LAST] });
-  playButton.setAttribute("data-playing", "");
-  playLabel.textContent = "Playing";
+  function go(index) {
+    const target = Math.max(0, Math.min(LAST, index));
+    gsap.to(window, { scrollTo: { y: scrollFor(target), autoKill: true }, duration: calm ? 0 : 1.1, ease: "power2.inOut" });
+  }
+
+  // Play: scroll through the whole story by itself, holding each step long enough to read it.
+  let player = null;
+  function stopPlaying(label = "Play") {
+    if (!player) return;
+    player.kill();
+    player = null;
+    playButton.removeAttribute("data-playing");
+    playLabel.textContent = label;
+  }
+  function play() {
+    stopPlaying();
+    const start = active >= LAST ? 0 : Math.max(0, active);
+    player = gsap.timeline({
+      onComplete: () => {
+        player = null;
+        playButton.removeAttribute("data-playing");
+        playLabel.textContent = "Replay";
+      },
+    });
+    if (start === 0 && window.scrollY > scrollFor(0) + 2) player.to(window, { scrollTo: { y: scrollFor(0), autoKill: false }, duration: 1.2, ease: "power2.inOut" });
+    for (let i = start + 1; i <= LAST; i++) {
+      player.to(window, { scrollTo: { y: scrollFor(i), autoKill: false }, duration: calm ? 0.01 : 1.4, ease: "power1.inOut" }, `+=${STORY.holds[i - 1]}`);
+    }
+    player.to({}, { duration: STORY.holds[LAST] });
+    playButton.setAttribute("data-playing", "");
+    playLabel.textContent = "Playing";
+  }
+  playButton.addEventListener("click", () => (player ? stopPlaying() : play()));
+  for (const type of ["wheel", "touchstart"]) addEventListener(type, () => stopPlaying(), { passive: true });
+  addEventListener("pointerdown", (event) => { if (!event.target.closest("[data-play]")) stopPlaying(); });
+  addEventListener("keydown", (event) => {
+    if (event.metaKey || event.ctrlKey || event.altKey) return;
+    if (event.key === "p" || event.key === "P") {
+      event.preventDefault();
+      if (player) stopPlaying();
+      else play();
+      return;
+    }
+    stopPlaying();
+    if (event.target.closest && event.target.closest("button, a, input, textarea")) return;
+    const st = tl.scrollTrigger;
+    if (window.scrollY > st.end - 2) return;
+    if (event.key === "ArrowDown" || event.key === "PageDown" || event.key === " ") {
+      event.preventDefault();
+      go(active + 1);
+    } else if (event.key === "ArrowUp" || event.key === "PageUp") {
+      event.preventDefault();
+      go(active - 1);
+    }
+  });
+  if (location.hash === "#play") document.fonts?.ready.then(() => setTimeout(play, 600));
 }
-playButton.addEventListener("click", () => (player ? stopPlaying() : play()));
-for (const type of ["wheel", "touchstart"]) addEventListener(type, () => stopPlaying(), { passive: true });
-addEventListener("pointerdown", (event) => { if (!event.target.closest("[data-play]")) stopPlaying(); });
-addEventListener("keydown", (event) => {
-  if (event.metaKey || event.ctrlKey || event.altKey) return;
-  if (event.key === "p" || event.key === "P") {
-    event.preventDefault();
-    if (player) stopPlaying();
-    else play();
-    return;
+
+// The film: hold each step long enough to read, then move to the next. Exposed for film.mjs.
+if (filming) {
+  const film = gsap.timeline({ paused: true, onUpdate: () => (progressEl.style.transform = `scaleX(${film.progress().toFixed(4)})`) });
+  const MOVE_SECONDS = 1.9;
+  for (let i = 1; i <= LAST; i++) {
+    const hold = STORY.film[i - 1];
+    film.to(drift, { z: -0.035, duration: hold, ease: "sine.inOut", onUpdate: drawCamera });
+    film.fromTo(tl, { time: i - MOVE - 0.02 }, { time: i, duration: MOVE_SECONDS, ease: "power2.inOut", immediateRender: false });
+    film.to(drift, { z: 0, duration: MOVE_SECONDS, ease: "power2.inOut", onUpdate: drawCamera }, "<");
   }
-  stopPlaying();
-  if (event.target.closest && event.target.closest("button, a, input, textarea")) return;
-  const st = tl.scrollTrigger;
-  if (window.scrollY > st.end - 2) return;
-  if (event.key === "ArrowDown" || event.key === "PageDown" || event.key === " ") {
-    event.preventDefault();
-    go(active + 1);
-  } else if (event.key === "ArrowUp" || event.key === "PageUp") {
-    event.preventDefault();
-    go(active - 1);
-  }
-});
+  film.to(drift, { z: -0.035, duration: STORY.film[LAST], ease: "sine.inOut", onUpdate: drawCamera });
+  window.__film = { fps: 30, duration: film.duration(), start: () => film.play(0) };
+}
+
+// The cue on the first screen: a dot running down a short line.
+const cueDot = document.querySelector(".xs-cue-line i");
+if (cueDot && !calm && !filming) gsap.fromTo(cueDot, { yPercent: -110 }, { yPercent: 260, duration: 1.8, ease: "power2.inOut", repeat: -1 });
 
 drawCamera();
 sync();
-if (location.hash === "#play") document.fonts?.ready.then(() => setTimeout(play, 600));
 </script></body></html>
