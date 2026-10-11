@@ -1644,6 +1644,14 @@ tl = gsap.timeline({
         start: "top top",
         end: "bottom bottom",
         scrub: calm ? true : 0.9,
+        // when scrolling stops, ease to the next step in the direction you were scrolling (never skipping one)
+        snap: {
+          snapTo: "labelsDirectional",
+          inertia: false,
+          duration: calm ? 0.01 : { min: 0.3, max: 0.8 },
+          delay: 0.08,
+          ease: "power2.inOut",
+        },
         invalidateOnRefresh: true,
       },
 });
@@ -1658,6 +1666,9 @@ for (let i = 1; i <= LAST; i++) {
   tl.fromTo(stepEls[i].children, { autoAlpha: 0, y: 26 }, { autoAlpha: 1, y: 0, duration: 0.32, stagger: 0.045, ease: "power2.out", immediateRender: false }, i - 0.38);
 }
 tl.to({}, { duration: END_HOLD }, LAST);
+// a snap point on every step, and one at the end so the footer can still be reached
+for (let i = 0; i <= LAST; i++) tl.addLabel(`step${i}`, i);
+tl.addLabel("end", LAST + END_HOLD);
 
 if (!filming) {
   // After a resize (or the fonts arriving) every tween has new end points: replay to where we are.
@@ -1673,7 +1684,7 @@ if (!filming) {
   // Scrolling position of a step, for Play and the keys.
   function scrollFor(index) {
     const st = tl.scrollTrigger;
-    const time = Math.min(index + 0.02, tl.duration());
+    const time = Math.min(index, tl.duration()); // exactly on the step's snap point
     return st.start + (st.end - st.start) * (time / tl.duration());
   }
   function go(index) {
