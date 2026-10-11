@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>How X ranks your feed</title><meta name="description" content="Scroll through a mixing desk built from the weights in X's open-source ranking code and watch a post's score get made."><link rel="canonical" href="https://mahdidavoodi7.github.io/how-x-ranks-your-feed/"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%2318181a'%2F%3E%3Cpath%20d%3D'M11%207v18M21%207v18'%20stroke%3D'%236a6a6a'%20stroke-width%3D'2'%20stroke-linecap%3D'round'%2F%3E%3Crect%20x%3D'7'%20y%3D'17'%20width%3D'8'%20height%3D'5'%20rx%3D'1.5'%20fill%3D'%23fbfbfa'%2F%3E%3Crect%20x%3D'17'%20y%3D'9'%20width%3D'8'%20height%3D'5'%20rx%3D'1.5'%20fill%3D'%234fc48e'%2F%3E%3C%2Fsvg%3E"><meta name="theme-color" content="#fbfbfa" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#131313" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:site_name" content="motionary.dev"><meta property="og:title" content="How X ranks your For You feed"><meta property="og:description" content="Scroll through a mixing desk built from the weights in X's open-source ranking code and watch a post's score get made."><meta property="og:url" content="https://mahdidavoodi7.github.io/how-x-ranks-your-feed/"><meta property="og:image" content="https://mahdidavoodi7.github.io/how-x-ranks-your-feed/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="A drawing of a twelve-channel mixing desk with a score meter, beside the headline: How X decides what's in your For You feed"><link rel="me" href="https://x.com/mehdi_made"><meta name="author" content="@mehdi_made · motionary.dev"><meta name="twitter:site" content="@mehdi_made"><meta name="twitter:creator" content="@mehdi_made"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How X ranks your For You feed"><meta name="twitter:description" content="Scroll through a mixing desk built from the weights in X's open-source ranking code and watch a post's score get made."><meta name="twitter:image" content="https://mahdidavoodi7.github.io/how-x-ranks-your-feed/og.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>How X ranks your feed</title><meta name="description" content="A model predicts what you'll do with each post, and X weighs every prediction and adds them up. Scroll through that scorer, built as a mixing desk from X's open-source code."><link rel="canonical" href="https://mahdidavoodi7.github.io/how-x-ranks-your-feed/"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%2318181a'%2F%3E%3Cpath%20d%3D'M11%207v18M21%207v18'%20stroke%3D'%236a6a6a'%20stroke-width%3D'2'%20stroke-linecap%3D'round'%2F%3E%3Crect%20x%3D'7'%20y%3D'17'%20width%3D'8'%20height%3D'5'%20rx%3D'1.5'%20fill%3D'%23fbfbfa'%2F%3E%3Crect%20x%3D'17'%20y%3D'9'%20width%3D'8'%20height%3D'5'%20rx%3D'1.5'%20fill%3D'%234fc48e'%2F%3E%3C%2Fsvg%3E"><meta name="theme-color" content="#fbfbfa" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#131313" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:site_name" content="motionary.dev"><meta property="og:title" content="Every post on X gets a score. Here's the math."><meta property="og:description" content="A model predicts what you'll do with each post, and X weighs every prediction and adds them up. Scroll through that scorer, built as a mixing desk from X's open-source code."><meta property="og:url" content="https://mahdidavoodi7.github.io/how-x-ranks-your-feed/"><meta property="og:image" content="https://mahdidavoodi7.github.io/how-x-ranks-your-feed/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="A drawing of a twelve-channel mixing desk with a score meter, beside the headline: How X decides what's in your For You feed"><link rel="me" href="https://x.com/mehdi_made"><meta name="author" content="@mehdi_made · motionary.dev"><meta name="twitter:site" content="@mehdi_made"><meta name="twitter:creator" content="@mehdi_made"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Every post on X gets a score. Here's the math."><meta name="twitter:description" content="A model predicts what you'll do with each post, and X weighs every prediction and adds them up. Scroll through that scorer, built as a mixing desk from X's open-source code."><meta name="twitter:image" content="https://mahdidavoodi7.github.io/how-x-ranks-your-feed/og.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><style>
 :root{--anatomy-page:#0b0b0b;--anatomy-card:#131313;--anatomy-text:#a3a3a3;--anatomy-strong:#e6e6e6;--anatomy-muted:#6e6e6e;
   --anatomy-paper:#131313;--anatomy-face:#1b1b1b;--anatomy-top:#1c1c1c;
   --anatomy-shade-0:#0f0f0f;--anatomy-shade-1:#121212;--anatomy-shade-2:#151515;--anatomy-shade-3:#181818;
@@ -132,7 +132,8 @@ body{margin:0;background:var(--anatomy-card);color:var(--anatomy-text);-webkit-f
 .xs{font-family:Geist,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;--xs-mono:"Geist Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace}
 .xs a{color:var(--anatomy-strong);text-underline-offset:2px}
 
-.xs-story{position:relative;height:100vh;height:100svh;display:grid;grid-template-columns:clamp(340px,36vw,580px) minmax(0,1fr);background:var(--anatomy-card);overflow:hidden}
+.xs-track{position:relative;height:calc(100vh + var(--xs-run,1000vh))}
+.xs-story{position:sticky;top:0;height:100vh;height:100dvh;display:grid;grid-template-columns:clamp(340px,36vw,580px) minmax(0,1fr);background:var(--anatomy-card);overflow:hidden}
 .xs-panel{position:relative;container-type:inline-size;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:16px;padding:clamp(20px,3vw,48px);border-right:1px solid var(--anatomy-faint);min-width:0}
 .xs-top,.xs-foot{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .xs-brand,.xs-count{font:500 11.5px/1 var(--xs-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--anatomy-muted);font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -148,7 +149,7 @@ body{margin:0;background:var(--anatomy-card);color:var(--anatomy-text);-webkit-f
 .xs-pill[data-primary]:hover{background:var(--anatomy-text)}
 .xs-pill:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:3px}
 .xs-steps{position:relative;min-height:0}
-.xs-step{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,1.5vw,22px)}
+.xs-step{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;justify-content:safe center;gap:clamp(12px,1.5vw,22px)}
 .xs-step>*{margin:0}
 .xs-eyebrow{font:500 12px/1.2 var(--xs-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--xs-pos)}
 .xs-title{color:var(--anatomy-strong);font-weight:640;letter-spacing:-.028em;text-wrap:balance}
@@ -171,7 +172,9 @@ h2.xs-title{font-size:clamp(26px,2.75vw,44px);line-height:1.06}
 .xs-play svg{width:10px;height:10px;fill:currentColor}
 .xs-play:hover{background:var(--anatomy-strong);color:var(--anatomy-card)}
 .xs-play:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:3px}
-.xs-play[data-playing]{opacity:0;pointer-events:none}
+.xs-play .xs-i-pause,.xs-play[data-playing] .xs-i-play{display:none}
+.xs-play[data-playing] .xs-i-pause{display:inline}
+.xs-play[data-playing]{background:var(--anatomy-strong);color:var(--anatomy-card);border-color:var(--anatomy-strong)}
 
 .xs-stage{position:relative;min-width:0;min-height:0;overflow:hidden;background:var(--anatomy-card)}
 .xs-stage .iso-svg{position:absolute;inset:0;width:100%;height:100%;overflow:hidden}
@@ -190,8 +193,8 @@ h2.xs-title{font-size:clamp(26px,2.75vw,44px);line-height:1.06}
 @media (max-width:760px),(max-aspect-ratio:4/5){
   .xs-story{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,54fr) minmax(0,46fr)}
   .xs-stage{grid-row:1}
-  .xs-panel{grid-row:2;border-right:0;border-top:1px solid var(--anatomy-faint);padding:18px 18px 16px;gap:10px}
-  .xs-step{justify-content:flex-start;gap:10px}
+  .xs-panel{grid-row:2;border-right:0;border-top:1px solid var(--anatomy-faint);padding:16px 18px calc(14px + env(safe-area-inset-bottom,0px));gap:12px}
+  .xs-step{justify-content:flex-start;justify-content:safe center;gap:10px}
   h1.xs-title{font-size:clamp(26px,7vw,40px)}
   h2.xs-title{font-size:clamp(22px,5.8vw,32px)}
   .xs-text{font-size:15.5px}
@@ -206,6 +209,8 @@ h2.xs-title{font-size:clamp(26px,2.75vw,44px);line-height:1.06}
 /* Film mode (#film): the desktop layout with type sized for a video seen in a feed. */
 .xs-url{display:none}
 .xs-film *{transition:none!important;animation:none!important}
+.xs-film .xs-track{height:auto}
+.xs-film .xs-story{position:relative;height:100vh}
 .xs-film .xs-story{grid-template-columns:44% minmax(0,1fr)}
 .xs-film .xs-panel{padding:40px 44px 36px;gap:20px}
 .xs-film .xs-credit{font-size:15px}
@@ -268,6 +273,23 @@ html.xs-loading{overflow:hidden}
 /* until GSAP takes over, only the first step's words are on screen */
 .xs-step:not([data-step="0"])>*{opacity:0;visibility:hidden}
 @media (prefers-reduced-motion:reduce){.xs-loader-desk i{animation:none}.xs-loader-bar i{animation:none;transform:none}.xs-loader,.xs-loader-inner{transition-duration:.01s}}
+/* Short phones: a little less drawing, a little more room for the words. */
+@media (max-width:760px) and (max-height:740px){
+  .xs-story{grid-template-rows:minmax(0,47fr) minmax(0,53fr)}
+  .xs-panel{padding-top:12px;gap:10px}
+  .xs-step{gap:8px}
+  h2.xs-title{font-size:clamp(21px,5.6vw,28px)}
+  .xs-text{font-size:14.5px;line-height:1.45}
+  .xs-big{font-size:clamp(17px,4.8vw,22px)}
+  .xs-note{font-size:11.5px;line-height:1.4}
+  .xs-pill{font-size:11.5px;padding:8px 12px}
+  .xs-follow{gap:6px}
+}
+@media (max-width:760px) and (max-height:600px){
+  h1.xs-title{font-size:23px}
+  .xs-eyebrow{font-size:10.5px}
+  .xs-step .xs-note{display:none}
+}
 
 </style>
 <style>
@@ -313,14 +335,15 @@ html.xs-loading{overflow:hidden}
   </div>
 </div>
 <div class="xs">
+  <div class="xs-track" style="--xs-run:1026.0vh">
   <section class="xs-story" aria-label="How X ranks a post, in 12 steps">
     <div class="xs-panel">
       <div class="xs-top"><span class="xs-credit"><a href="https://motionary.dev/" target="_blank" rel="noopener">motionary.dev</a><span aria-hidden="true">·</span><a href="https://x.com/mehdi_made" target="_blank" rel="noopener me">@mehdi_made</a></span></div>
-      <div class="xs-steps"><article class="xs-step" data-step="0"><p class="xs-eyebrow">X's For You algorithm</p><h1 class="xs-title">How X decides what's in your For You feed</h1><p class="xs-text">Every post gets one score. X's code calls the scorer Home Mixer, so let's build one.</p><p class="xs-cue"><span class="xs-cue-line" aria-hidden="true"><i></i></span>Scroll, or press Play</p></article><article class="xs-step" data-step="1" aria-hidden="true"><h2 class="xs-title">One channel for each thing you might do</h2><p class="xs-text">Like, reply, repost, share… and four you'd rather not: block, not interested, mute, report.</p></article><article class="xs-step" data-step="2" aria-hidden="true"><h2 class="xs-title">The fader is a prediction</h2><p class="xs-text">X's AI model guesses how likely you are to reply to this post.</p><p class="xs-big"><span class="xs-pos">3%</span> chance of a reply</p></article><article class="xs-step" data-step="3" aria-hidden="true"><h2 class="xs-title">The knob is how much X cares</h2><p class="xs-text">Each action has a fixed weight. A reply: 5, or 20 if you follow each other.</p><p class="xs-big"><span class="xs-pos">reply ×5 → ×20</span></p></article><article class="xs-step" data-step="4" aria-hidden="true"><h2 class="xs-title">Multiply the two</h2><p class="xs-text">Chance × weight is what this channel adds to the score.</p><p class="xs-big">3% × 20 = <span class="xs-pos">+0.60</span></p></article><article class="xs-step" data-step="5" aria-hidden="true"><h2 class="xs-title">Likes barely count</h2><p class="xs-text">A like weighs just 0.5, so it adds 0.03: a twentieth of that reply.</p><p class="xs-big">6% × 0.5 = <span class="xs-pos">+0.03</span></p></article><article class="xs-step" data-step="6" aria-hidden="true"><h2 class="xs-title">Four channels subtract</h2><p class="xs-text">Huge weights, because they're rare. Even a 0.2% chance of “Not interested” costs 0.095.</p><p class="xs-big">0.2% × −47.52 = <span class="xs-neg">−0.095</span></p><ul class="xs-list"><li><span>Block</span><span class="xs-neg">−31.2</span></li><li><span>Not interested</span><span class="xs-neg">−47.52</span></li><li><span>Mute</span><span class="xs-neg">−58.8</span></li><li><span>Report</span><span class="xs-neg">−234</span></li></ul></article><article class="xs-step" data-step="7" aria-hidden="true"><h2 class="xs-title">Add it all up</h2><p class="xs-text">Every channel feeds one meter. This post from a mutual scores 0.58.</p><p class="xs-big">Score <span class="xs-pos">0.58</span></p></article><article class="xs-step" data-step="8" aria-hidden="true"><h2 class="xs-title">Then the discounts</h2><p class="xs-text">Another post from the same account: ×0.63, then ×0.44… Not following them: ×0.75.</p><p class="xs-big">0.58 × 0.63 = <span class="xs-pos">0.36</span></p></article><article class="xs-step" data-step="9" aria-hidden="true"><h2 class="xs-title">Rage bait sinks</h2><p class="xs-text">Predicted mutes and “Not interested” taps push its total below zero, so it's squeezed to almost nothing.</p><p class="xs-big">Score <span class="xs-neg">0.0007</span></p></article><article class="xs-step" data-step="10" aria-hidden="true"><h2 class="xs-title">Useful posts travel</h2><p class="xs-text">People share this link, and copy link weighs 20. Even at ×0.75 it scores 0.14.</p><p class="xs-big">Score <span class="xs-pos">0.14</span></p></article><article class="xs-step" data-step="11" aria-hidden="true"><h2 class="xs-title">Your feed: highest scores first</h2><p class="xs-text">Replies and shares lift a post. Mutes and reports sink it. Drag a fader to try your own.</p><p class="xs-note">Weights: <a href="https://github.com/xai-org/x-algorithm/blob/cb45b5501423126adfc508052116c2d67c0e3fec/home-mixer/params/param.rs" target="_blank" rel="noopener">home-mixer/params/param.rs</a> in X's open-source code, synced 8 Oct 2026. Example chances are illustrative.</p><p class="xs-follow"><a class="xs-pill" data-primary href="https://x.com/mehdi_made" target="_blank" rel="noopener me">Follow @mehdi_made on X<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5l5-5M3.5 2.5h4v4"/></svg></a><a class="xs-pill" href="https://motionary.dev/" target="_blank" rel="noopener">motionary.dev<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5l5-5M3.5 2.5h4v4"/></svg></a></p><p class="xs-url" aria-hidden="true"><span>Try it yourself</span><b>mahdidavoodi7.github.io/how-x-ranks-your-feed</b></p></article></div>
+      <div class="xs-steps"><article class="xs-step" data-step="0"><p class="xs-eyebrow">X's open-source algorithm, explained</p><h1 class="xs-title">Every post on X gets a score. Here's the math.</h1><p class="xs-text">A model guesses what you'll do with each post. X weighs every guess and adds them up. Here's that scorer, built as a mixing desk.</p><p class="xs-cue"><span class="xs-cue-line" aria-hidden="true"><i></i></span>Scroll, or press Play</p></article><article class="xs-step" data-step="1" aria-hidden="true"><h2 class="xs-title">One channel for each thing you might do</h2><p class="xs-text">Like, reply, repost, share… and four you'd rather not: block, not interested, mute, report.</p></article><article class="xs-step" data-step="2" aria-hidden="true"><h2 class="xs-title">The fader is a prediction</h2><p class="xs-text">X's AI model guesses how likely you are to reply to this post.</p><p class="xs-big"><span class="xs-pos">3%</span> chance of a reply</p></article><article class="xs-step" data-step="3" aria-hidden="true"><h2 class="xs-title">The knob is how much X cares</h2><p class="xs-text">Each action has a fixed weight. A reply: 5, or 20 if you follow each other.</p><p class="xs-big"><span class="xs-pos">reply ×5 → ×20</span></p></article><article class="xs-step" data-step="4" aria-hidden="true"><h2 class="xs-title">Multiply the two</h2><p class="xs-text">Chance × weight is what this channel adds to the score.</p><p class="xs-big">3% × 20 = <span class="xs-pos">+0.60</span></p></article><article class="xs-step" data-step="5" aria-hidden="true"><h2 class="xs-title">Likes barely count</h2><p class="xs-text">A like weighs just 0.5, so it adds 0.03: a twentieth of that reply.</p><p class="xs-big">6% × 0.5 = <span class="xs-pos">+0.03</span></p></article><article class="xs-step" data-step="6" aria-hidden="true"><h2 class="xs-title">Four channels subtract</h2><p class="xs-text">Huge weights, because they're rare. Even a 0.2% chance of “Not interested” costs 0.095.</p><p class="xs-big">0.2% × −47.52 = <span class="xs-neg">−0.095</span></p><ul class="xs-list"><li><span>Block</span><span class="xs-neg">−31.2</span></li><li><span>Not interested</span><span class="xs-neg">−47.52</span></li><li><span>Mute</span><span class="xs-neg">−58.8</span></li><li><span>Report</span><span class="xs-neg">−234</span></li></ul></article><article class="xs-step" data-step="7" aria-hidden="true"><h2 class="xs-title">Add it all up</h2><p class="xs-text">Every channel feeds one meter. This post from a mutual scores 0.58.</p><p class="xs-big">Score <span class="xs-pos">0.58</span></p></article><article class="xs-step" data-step="8" aria-hidden="true"><h2 class="xs-title">Then the discounts</h2><p class="xs-text">Another post from the same account: ×0.63, then ×0.44… Not following them: ×0.75.</p><p class="xs-big">0.58 × 0.63 = <span class="xs-pos">0.36</span></p></article><article class="xs-step" data-step="9" aria-hidden="true"><h2 class="xs-title">Rage bait sinks</h2><p class="xs-text">Predicted mutes and “Not interested” taps push its total below zero, so it's squeezed to almost nothing.</p><p class="xs-big">Score <span class="xs-neg">0.0007</span></p></article><article class="xs-step" data-step="10" aria-hidden="true"><h2 class="xs-title">Useful posts travel</h2><p class="xs-text">People share this link, and copy link weighs 20. Even at ×0.75 it scores 0.14.</p><p class="xs-big">Score <span class="xs-pos">0.14</span></p></article><article class="xs-step" data-step="11" aria-hidden="true"><h2 class="xs-title">Your feed: highest scores first</h2><p class="xs-text">Replies and shares lift a post. Mutes and reports sink it. Drag a fader to try your own.</p><p class="xs-note">Weights: <a href="https://github.com/xai-org/x-algorithm/blob/cb45b5501423126adfc508052116c2d67c0e3fec/home-mixer/params/param.rs" target="_blank" rel="noopener">home-mixer/params/param.rs</a> in X's open-source code, synced 8 Oct 2026. Example chances are illustrative.</p><p class="xs-follow"><a class="xs-pill" data-primary href="https://x.com/mehdi_made" target="_blank" rel="noopener me">Follow @mehdi_made on X<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5l5-5M3.5 2.5h4v4"/></svg></a><a class="xs-pill" href="https://motionary.dev/" target="_blank" rel="noopener">motionary.dev<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5l5-5M3.5 2.5h4v4"/></svg></a></p><p class="xs-url" aria-hidden="true"><span>Try it yourself</span><b>mahdidavoodi7.github.io/how-x-ranks-your-feed</b></p></article></div>
       <div class="xs-foot">
         <span class="xs-count" data-count>01 / 12</span>
         <div class="xs-progress" aria-hidden="true"><i data-progress></i></div>
-        <button type="button" class="xs-play" data-play><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z"/></svg><span data-play-label>Play</span></button>
+        <button type="button" class="xs-play" data-play aria-label="Play the story"><svg viewBox="0 0 12 12" aria-hidden="true"><path class="xs-i-play" d="M3 1.8v8.4L10 6z"/><path class="xs-i-pause" d="M2.6 1.8h2.4v8.4H2.6zM7 1.8h2.4v8.4H7z"/></svg><span data-play-label>Play</span></button>
       </div>
     </div>
     <div class="xs-stage">
@@ -329,6 +352,7 @@ html.xs-loading{overflow:hidden}
       <span class="xm-sr" role="status" aria-live="polite" data-status></span>
     </div>
   </section>
+  </div>
   <footer class="xs-end">
     <div class="xs-end-inner">
       <h2>All twelve weights on the desk</h2>
@@ -1499,6 +1523,8 @@ const STORY = {"steps":[{"view":"desk","fill":0.92,"focus":[],"state":{"p":[0.06
 // the desk, lights the part being explained and swaps the words. The desk itself is
 // driven through window.desk, so its faders, knobs, meters and needle move the way the model says.
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+// a phone's toolbar showing and hiding resizes the viewport; the sticky layout absorbs that, so don't re-measure
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 // #film renders the story as a video: no scrolling, a fixed timeline, bigger type (see film.mjs).
 const filming = location.hash.startsWith("#film");
@@ -1613,10 +1639,10 @@ tl = gsap.timeline({
   scrollTrigger: filming
     ? undefined
     : {
-        trigger: storyEl,
+        // the story is position: sticky inside a tall track (story.css), so no pinning is needed
+        trigger: storyEl.parentElement,
         start: "top top",
-        end: () => `+=${Math.round((LAST + END_HOLD) * window.innerHeight * 0.9)}`,
-        pin: true,
+        end: "bottom bottom",
         scrub: calm ? true : 0.9,
         invalidateOnRefresh: true,
       },
@@ -1657,30 +1683,31 @@ if (!filming) {
 
   // Play: scroll through the whole story by itself, holding each step long enough to read it.
   let player = null;
+  function setPlaying(on, label) {
+    playButton.toggleAttribute("data-playing", on);
+    playButton.setAttribute("aria-label", on ? "Pause the story" : "Play the story");
+    playLabel.textContent = label;
+  }
   function stopPlaying(label = "Play") {
     if (!player) return;
     player.kill();
     player = null;
-    playButton.removeAttribute("data-playing");
-    playLabel.textContent = label;
+    setPlaying(false, label);
   }
-  function play() {
+  // Play moves on at once (the step on screen has already been seen), then holds each step long
+  // enough to read it. From the last step it goes back to the top first. #play holds the first step.
+  function play({ holdFirst = false } = {}) {
     stopPlaying();
-    const start = active >= LAST ? 0 : Math.max(0, active);
-    player = gsap.timeline({
-      onComplete: () => {
-        player = null;
-        playButton.removeAttribute("data-playing");
-        playLabel.textContent = "Replay";
-      },
-    });
-    if (start === 0 && window.scrollY > scrollFor(0) + 2) player.to(window, { scrollTo: { y: scrollFor(0), autoKill: false }, duration: 1.2, ease: "power2.inOut" });
+    const restart = active >= LAST;
+    const start = restart ? 0 : Math.max(0, active);
+    player = gsap.timeline({ onComplete: () => ((player = null), setPlaying(false, "Replay")) });
+    if (restart) player.to(window, { scrollTo: { y: scrollFor(0), autoKill: false }, duration: calm ? 0.01 : 1.4, ease: "power2.inOut" });
     for (let i = start + 1; i <= LAST; i++) {
-      player.to(window, { scrollTo: { y: scrollFor(i), autoKill: false }, duration: calm ? 0.01 : 1.4, ease: "power1.inOut" }, `+=${STORY.holds[i - 1]}`);
+      const hold = i === start + 1 && !holdFirst ? (restart ? 2.2 : 0) : STORY.holds[i - 1];
+      player.to(window, { scrollTo: { y: scrollFor(i), autoKill: false }, duration: calm ? 0.01 : 1.4, ease: "power2.inOut" }, `+=${hold}`);
     }
     player.to({}, { duration: STORY.holds[LAST] });
-    playButton.setAttribute("data-playing", "");
-    playLabel.textContent = "Playing";
+    setPlaying(true, "Pause");
   }
   playButton.addEventListener("click", () => (player ? stopPlaying() : play()));
   for (const type of ["wheel", "touchstart"]) addEventListener(type, () => stopPlaying(), { passive: true });
@@ -1705,7 +1732,7 @@ if (!filming) {
       go(active - 1);
     }
   });
-  if (location.hash === "#play") revealed.then(() => setTimeout(play, 500));
+  if (location.hash === "#play") revealed.then(() => setTimeout(() => play({ holdFirst: true }), 500));
 }
 
 // The film: hold each step long enough to read, then move to the next. Exposed for film.mjs.
